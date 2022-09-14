@@ -2,26 +2,28 @@ import { getAllByDisplayValue } from '@testing-library/react';
 import Axios from 'axios'
 import { useEffect, useState } from 'react';
 
-export const GetQuestion = () => {
-    const url = 'https://opentdb.com/api.php?amount=10'
-    const [questions, setQuestions] = useState(null)
+export const CategoryList = () => {
+    const url = 'https://opentdb.com/api_category.php'
+    const [categories, setCategories] = useState(null)
 
     useEffect(() => {
         Axios.get(url)
         .then((response) => {
-            setQuestions(response.data)
-            console.log(response.data.results[0].category)
+            setCategories(response.data.trivia_categories)
+            console.log(response.data)
         })
-        
     }, [url])
-    
-    if(questions){
-        return (
 
+    // const handleSelectedQuestion = (question) => {
+    //     setQuestions(question)
+    // }
+    
+    if(categories){
+        return (
             <div>
                 <h1>choose a category</h1>
                 <div>
-                    {questions.results[0].category}
+                    {categories.map((category) => <p key={category.id}>{category.name}</p> )}
                 </div>
             </div>
 
