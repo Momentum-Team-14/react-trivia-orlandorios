@@ -1,12 +1,23 @@
 import './App.css';
-import { Trivia } from './TriviaDatabase'
-
+import Button from '@mui/material/Button';
+import { Categories } from './SelectCategory';
+import {useState, useEffect} from 'react';
+import {Header} from './Header'
+import { TriviaGame } from './TriviaGame';
 
 function App() {
+  const [category, setCategory] = useState(null)
+
   return (
     <div className="App">
-      <h1>TRIVIA!</h1>
-      <Trivia />
+      <>
+      <Header />
+
+      <div className='TriviaContent'>
+      {(!category) ? <Categories setCategory={setCategory} /> :
+      <TriviaGame category={category} setCategory={setCategory} />}
+      </div>
+      </>
     </div>
   )
 }
