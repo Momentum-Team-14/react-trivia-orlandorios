@@ -14,7 +14,7 @@ function App() {
       <Header />
 
       <div className='TriviaContent'>
-      {(!category) ? <Categories setCategory={setCategory} /> :
+      {!category ? <Categories setCategory={setCategory} /> :
       <Category category={category} setCategory={setCategory} />}
       </div>
       </>

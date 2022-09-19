@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 import Axios from "axios";
 import {Question} from './Question'
 import Button from '@mui/material/Button';
+import { Results } from "./Results";
 
 export const Category = ({category, setCategory}) => {
     const [questions, setQuestions] = useState([])
+    const [score , setScore] = useState(0)
+    const [showResults, setShowResults] = useState(false)
 
     useEffect(() => {
         Axios.get(`https://opentdb.com/api.php?amount=10&category=${category}`)
@@ -16,11 +19,22 @@ export const Category = ({category, setCategory}) => {
     }, [category]) 
         
     return (
-        <>
-            <h2>Play a Trivia Game</h2>
+
+            showResults ? <Results score={score} questionAmount={questions.length} /> :
+
+        <>  
+            <h2>Let's Play Trivia!</h2>
             {questions.map((question, index) => (
-                <Question key={index} question={question}/>
+                <Question onCorrect={() => {
+                    setScore(score+1)
+                }}key={index} question={question}/>
             ))}
+
+            <Button onClick={() => 
+            {setShowResults(true)}}
+            variant="contained">
+                Submit
+            </Button>
         </>
     )
     }

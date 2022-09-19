@@ -1,8 +1,6 @@
 import Axios from 'axios'
 import {useEffect, useState} from 'react';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import './Categories.css'
 
 
 export const Categories = ({setCategory}) => {

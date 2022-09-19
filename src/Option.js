@@ -1,11 +1,15 @@
 import { Button } from "@mui/material"
+import { htmlDecode } from "./utilities"
 
 
-export const Option = ({option}) => {
+export const Option = ({option, onClick}) => {
+
 
     return (
             <>
-            <Button>{option}</Button>
+            <div className="option-list">
+            <Button onClick={onClick}>{htmlDecode(option)}</Button>
+            </div>
             </>
     )
 }
