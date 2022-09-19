@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react'
 import Axios from "axios";
+import {Question} from './Question'
 import Button from '@mui/material/Button';
 
-export const TriviaGame = ({category, setCategory}) => {
+export const Category = ({category, setCategory}) => {
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
@@ -17,8 +18,9 @@ export const TriviaGame = ({category, setCategory}) => {
     return (
         <>
             <h2>Play a Trivia Game</h2>
-            {questions.map((question) => (
-            <p key={question.id}>{question.question}</p>))}
+            {questions.map((question, index) => (
+                <Question key={index} question={question}/>
+            ))}
         </>
     )
     }
